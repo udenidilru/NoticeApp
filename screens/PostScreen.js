@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { Button, StyleSheet, TextInput, ScrollView, ActivityIndicator, View } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 
 class PostScreen extends Component {
   constructor() {
     super();
     this.dbRef = firestore().collection('posts');
     this.state = {
+      author: auth().currentUser.displayName,
+      title: '',
       post: '',
       createdAt:'',
       isLoading: false
@@ -27,10 +30,14 @@ class PostScreen extends Component {
         isLoading: true,
       });      
       this.dbRef.add({
+        author:this.state.author,
+        title: this.state.title,  
         post: this.state.post,
         createdAt: new Date().getTime(),
       }).then((res) => {
         this.setState({
+            author:'',
+          title: '',
           post: '',
           createdAt:'',
           isLoading: false,
@@ -57,6 +64,11 @@ class PostScreen extends Component {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.inputGroup}>
+        <TextInput
+              placeholder={'Title'}
+              value={this.state.title}
+              onChangeText={(val) => this.inputValueUpdate(val, 'title')}
+          />
           <TextInput
               placeholder={'Post'}
               value={this.state.post}

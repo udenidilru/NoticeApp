@@ -1,67 +1,174 @@
-import React from 'react';
-import {
-  StyleSheet,View,Text, ActivityIndicator, TouchableOpacity,LayoutAnimation,Image} from 'react-native';
-  import firebase from '@react-native-firebase/app';
+import React, { Component } from 'react';
+import { Alert,StyleSheet, ScrollView, ActivityIndicator, View ,Text} from 'react-native';
+import { ListItem } from 'react-native-elements'
+import firestore from '@react-native-firebase/firestore';
+import { Icon ,Card, Button} from 'react-native-elements'
 
-export default class HomeScreen extends React.Component {
 
-    state = {
-        email: "",
-        displayName: ""
+class HomeScreen extends Component {
+
+  constructor() {
+    super();
+    this.firestoreRef = firestore().collection('posts').orderBy('createdAt', 'desc');
+    this.state = {
+      isLoading: true,
+      userArr: []
     };
-    componentDidMount(){
-        const {email,displayName} = firebase.auth().currentUser;
+  }
 
-        this.setState({email,displayName});
-    }
-    signOutUser = () => {
-        firebase.auth().signOut();
-    }
+  componentDidMount() {
+    this.unsubscribe = this.firestoreRef.onSnapshot(this.getCollection);
+  }
 
-    render(){
-        LayoutAnimation.easeInEaseOut();
-        return (
-            <View style={styles.container}>
+  componentWillUnmount(){
+    this.unsubscribe();
+  }
+  updatePost() {
+    this.setState({
+      isLoading: true,
+    });
+    const updateDBRef = firestore().collection('posts').doc(this.state.key);
+    updateDBRef.set({
+      name: this.state.name,
+      email: this.state.email,
+      mobile: this.state.mobile,
+    }).then((docRef) => {
+      this.setState({
+        key: '',
+        name: '',
+        email: '',
+        mobile: '',
+        isLoading: false,
+      });
+    //  this.props.navigation.navigate('UserScreen');
+    })
+    .catch((error) => {
+      console.error("Error: ", error);
+      this.setState({
+        isLoading: false,
+      });
+    });
+  }
 
-            <Image 
-                source = {require("../assets/a.jpg")}
-                style = {{position: "absolute", bottom: -225, right: -225}}
-            ></Image>
-            <Image 
-                source = {require("../assets/profile.jpg")}
-                style = {{ bottom: -200, right: -10}}
-            ></Image>
-            {/* <Image 
-                source = {require("../assets/abc.jpg")}
-                style = {{ bottom: -225, right: -25,borderRadius: 50}}
-            ></Image> */}
-                <Text style={styles.email}>Hi {this.state.email}!</Text>
+  deletePost(key) {
+    const dbRef = firestore().collection('posts').doc(key)
+      dbRef.delete().then((res) => {
+          console.log('Item removed from database')
+          this.props.navigation.navigate('PostScreen');
+      })
+  }
 
-                <TouchableOpacity style={styles.logout} onPress={this.signOutUser}>
-                    <Text>Logout</Text>
-                </TouchableOpacity>
-            </View>
-        );
-        
-    }
+  openTwoButtonAlert(key){
+    Alert.alert(
+      'Delete User',
+      'Are you sure?',
+      [
+        {text: 'Yes', onPress: () => this.deletePost(key)},
+        {text: 'No', onPress: () => console.log('No item was removed'), style: 'cancel'},
+      ],
+      { 
+        cancelable: true 
+      }
+    );
+  }
+
+  getCollection = (querySnapshot) => {
+    const userArr = [];
+    querySnapshot.forEach((res) => {
+      const { title,post,author,createdAt } = res.data();
+      userArr.push({
+        key: res.id,
+        res,
+        title,
+        author,
+        post,
+        createdAt,
+      });
+    });
+    this.setState({
+      userArr,
+      isLoading: false,
+   });
+  }
+
+  render() {
+    if(this.state.isLoading){
+      return(
+        <View style={styles.preloader}>
+          <ActivityIndicator size="large" color="#9E9E9E"/>
+        </View>
+      )
+    }    
+    return (
+      <ScrollView style={styles.container}>
+          {
+            this.state.userArr.map((item, i) => {
+              return (
+                <Card style={styles.card}>
+                <View style={styles.listitem}>
+                <ListItem
+                  key={i}
+                  chevron
+                  bottomDivider
+                  title={item.title}
+                  subtitle={
+                    <View style={{marginTop:5}}>
+                     <Text>{item.post}</Text>
+                     <Text>{item.author}</Text>
+                {/* <Button onPress={this.openTwoButtonAlert(item.key)} icon={<Icon type='font-awesome' name="trash"  size={24} />} />
+                <Button icon={ <Icon type='font-awesome' name="edit"  size={24} />}/> */}
+                  </View>
+                    }
+                    
+                    subtitleStyle={{ paddingLeft: 20, paddingBottom:30 }}
+                   // rightIcon= {<Icon type='font-awesome' name="bell"  size={24} />}
+                  onPress={() => {
+                     this.props.navigation.navigate('HomeScreen', {
+                      userkey: item.key
+                     });
+                  }}/>
+                  </View>
+                  <View style={{flexDirection:'row',marginTop:5, marginLeft:200}}>
+                <Button onPress={this.openTwoButtonAlert(item.key)} icon={<Icon type='font-awesome' name="trash"  size={24} />} />
+                <Button icon={ <Icon type='font-awesome' name="edit"  size={24} />}/>
+                  </View>
+                  </Card>
+              );
+            })
+          }
+      </ScrollView>
+    );
+  }
 }
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-      //  justifyContent: "center",
-        alignItems:"center",
-        
-    },
-    logout:{
-        bottom: 270,
-        right: -140,
-        marginTop: 32,
-        backgroundColor: "#ADD8E6"
-    },
-    email: {
-        bottom: 120,
-        fontSize: 23,
-        color: "#800080"
-    }
 
-});
+const styles = StyleSheet.create({
+  container: {
+   flex: 1,
+   paddingBottom: 22,
+   backgroundColor: '#FFB6C1'
+  },
+  preloader: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  listitem: {
+   // backgroundColor: '#FFB6C1',
+     width: 300,
+     marginLeft: 10,
+     marginTop: 20,
+     
+  },
+  post: {
+    padding: 20
+  },
+  card: {
+    backgroundColor: "#eeeeee"
+  }
+})
+
+export default HomeScreen;
