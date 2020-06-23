@@ -16,10 +16,10 @@ import HomeScreen from './screens/HomeScreen'
 import LoadingScreen from './screens/LoadingScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
-//import PostScreen from './screens/PostScreen'
+import PostScreen from './screens/PostScreen'
 //import PostDetailScreen from './screens/PostDetailScreen'
 //import NotificationScreen from './screens/NotificationScreen'
-//import ProfileScreen from './screens/ProfileScreen'
+import ProfileScreen from './screens/ProfileScreen'
 import { Icon } from 'react-native-elements'
 // import {decode, encode} from 'base-64';
 // if (!global.btoa) {
@@ -46,35 +46,35 @@ const AppTabNavigator = createBottomTabNavigator(
       //     tabBarIcon: ({ tintColor }) => <Icon type='font-awesome' name="comments" size={24} color={tintColor}/>
       //   }
       // },
-      // Post: {
-      //   screen: PostScreen,
-      //   navigationOptions: {
-      //     tabBarIcon: ({ tintColor }) => 
-      //     <Icon 
-      //       name="add-circle-outline" 
-      //       size={48} 
-      //       color={tintColor} 
-      //       style={{
-      //         shadowColor: "E9446A" ,
-      //         shadowOffseet: { width:0,height:0},
-      //         shadowRadius: 10,
-      //         shadowOpacity:0.3
-      //       }}
-      //       />
-      //   }
-      // },
+      Post: {
+        screen: PostScreen,
+        navigationOptions: {
+          tabBarIcon: ({ tintColor }) => 
+          <Icon 
+            name="add-circle-outline" 
+            size={48} 
+            color={tintColor} 
+            style={{
+              shadowColor: "E9446A" ,
+              shadowOffseet: { width:0,height:0},
+              shadowRadius: 10,
+              shadowOpacity:0.3
+            }}
+            />
+        }
+      },
       // Notification: {
       //   screen: NotificationScreen,
       //   navigationOptions: {
       //     tabBarIcon: ({ tintColor }) => <Icon type='font-awesome' name="bell"  size={24} color={tintColor}/>
       //   }
       // },
-      // Profile: {
-      //   screen: ProfileScreen,
-      //   navigationOptions: {
-      //     tabBarIcon: ({ tintColor }) => <Icon type='font-awesome' name="user" size={24} color={tintColor}/>
-      //   }
-      // }
+      Profile: {
+        screen: ProfileScreen,
+        navigationOptions: {
+          tabBarIcon: ({ tintColor }) => <Icon type='font-awesome' name="user" size={24} color={tintColor}/>
+        }
+      }
     },
   
     {
