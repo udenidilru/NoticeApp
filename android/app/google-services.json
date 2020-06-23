@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "835469962179",
+    "firebase_url": "https://noticeapp-64ae9.firebaseio.com",
+    "project_id": "noticeapp-64ae9",
+    "storage_bucket": "noticeapp-64ae9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835469962179:android:d8199cf4c85db6a40d6b76",
+        "android_client_info": {
+          "package_name": "com.noticeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835469962179-ikbslvs63bj3p1hk4kpjmfkdkd57jh29.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfA6RU-RYAgP5wajQ5DkZ1luTF-m9HyYU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835469962179-ikbslvs63bj3p1hk4kpjmfkdkd57jh29.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
