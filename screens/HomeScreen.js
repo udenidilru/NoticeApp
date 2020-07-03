@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert,StyleSheet, ScrollView, ActivityIndicator, View ,Text} from 'react-native';
+import { Alert,StyleSheet, ScrollView, ActivityIndicator, View ,Text,Image} from 'react-native';
 import { ListItem } from 'react-native-elements'
 import firestore from '@react-native-firebase/firestore';
 import { Icon ,Card, Button} from 'react-native-elements'
@@ -50,26 +50,17 @@ class HomeScreen extends Component {
     });
   }
 
-  deletePost(key) {
-    const dbRef = firestore().collection('posts').doc(key)
-      dbRef.delete().then((res) => {
-          console.log('Item removed from database')
-          this.props.navigation.navigate('PostScreen');
-      })
-  }
-
-  openTwoButtonAlert(key){
-    Alert.alert(
-      'Delete User',
-      'Are you sure?',
-      [
-        {text: 'Yes', onPress: () => this.deletePost(key)},
-        {text: 'No', onPress: () => console.log('No item was removed'), style: 'cancel'},
-      ],
-      { 
-        cancelable: true 
-      }
-    );
+  deleteBoard(key) {
+    const { navigation } = this.props;
+    this.setState({
+      isLoading: true
+    });
+    firestore().collection('posts').doc(key).delete().then(() => {
+      console.log("Document successfully deleted!");
+      navigation.navigate('Board');
+    }).catch((error) => {
+      console.error("Error removing document: ", error);
+    });
   }
 
   getCollection = (querySnapshot) => {
@@ -110,11 +101,19 @@ class HomeScreen extends Component {
                   key={i}
                   chevron
                   bottomDivider
-                  title={item.title}
+                  // title={item.author}
                   subtitle={
-                    <View style={{marginTop:5}}>
-                     <Text>{item.post}</Text>
-                     <Text>{item.author}</Text>
+                    <View>
+                      
+                      <Image 
+                source = {require("../assets/profile.jpg")}
+                style = {{ width: 50,marginTop:-60,marginLeft:-30,
+                  height: 50,
+                  borderRadius: 10,}}
+            ></Image>
+                    <Text style={{marginTop:-40,marginLeft:30}}>{item.author}</Text>
+                     <Text style={{marginTop:20,fontWeight: "bold",marginLeft:30,color: 'green',fontSize:18}}>{item.title}</Text>
+                     <Text style={{marginTop:5,marginLeft:30}}>{item.post}</Text>
                 {/* <Button onPress={this.openTwoButtonAlert(item.key)} icon={<Icon type='font-awesome' name="trash"  size={24} />} />
                 <Button icon={ <Icon type='font-awesome' name="edit"  size={24} />}/> */}
                   </View>
@@ -129,7 +128,7 @@ class HomeScreen extends Component {
                   }}/>
                   </View>
                   <View style={{flexDirection:'row',marginTop:5, marginLeft:200}}>
-                <Button onPress={this.openTwoButtonAlert(item.key)} icon={<Icon type='font-awesome' name="trash"  size={24} />} />
+                <Button onPress={() => this.deleteBoard(item.key)} icon={<Icon type='font-awesome' name="trash"  size={24} />} />
                 <Button icon={ <Icon type='font-awesome' name="edit"  size={24} />}/>
                   </View>
                   </Card>
