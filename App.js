@@ -17,6 +17,7 @@ import LoadingScreen from './screens/LoadingScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import PostScreen from './screens/PostScreen'
+import UpdatePostScreen from './screens/UpdatePostScreen'
 //import PostDetailScreen from './screens/PostDetailScreen'
 //import NotificationScreen from './screens/NotificationScreen'
 import ProfileScreen from './screens/ProfileScreen'
@@ -109,14 +110,15 @@ const AppTabNavigator = createBottomTabNavigator(
 
 const AuthStack = createStackNavigator({
   Login: LoginScreen,
-  Register: RegisterScreen
+  Register: RegisterScreen,
 })
 
 export default createAppContainer(
   createSwitchNavigator({
     Loading:LoadingScreen,
     App: AppTabNavigator,
-    Auth: AuthStack
+    Auth: AuthStack,
+    UpdatePost: UpdatePostScreen
   },
   {
     initialRouteName: "Loading"

@@ -114,23 +114,27 @@ class HomeScreen extends Component {
                     <Text style={{marginTop:-40,marginLeft:30}}>{item.author}</Text>
                      <Text style={{marginTop:20,fontWeight: "bold",marginLeft:30,color: 'green',fontSize:18}}>{item.title}</Text>
                      <Text style={{marginTop:5,marginLeft:30}}>{item.post}</Text>
-                {/* <Button onPress={this.openTwoButtonAlert(item.key)} icon={<Icon type='font-awesome' name="trash"  size={24} />} />
-                <Button icon={ <Icon type='font-awesome' name="edit"  size={24} />}/> */}
                   </View>
                     }
                     
                     subtitleStyle={{ paddingLeft: 20, paddingBottom:30 }}
-                   // rightIcon= {<Icon type='font-awesome' name="bell"  size={24} />}
                   onPress={() => {
                      this.props.navigation.navigate('HomeScreen', {
                       userkey: item.key
                      });
                   }}/>
                   </View>
+                  {/* if(item.author == auth().currentUser.displayName){ */}
                   <View style={{flexDirection:'row',marginTop:5, marginLeft:200}}>
                 <Button onPress={() => this.deleteBoard(item.key)} icon={<Icon type='font-awesome' name="trash"  size={24} />} />
-                <Button icon={ <Icon type='font-awesome' name="edit"  size={24} />}/>
+                <Button onPress={() => {
+              this.props.navigation.navigate('UpdatePost',{
+                boardkey: item.key
+              });
+            }} icon={ <Icon type='font-awesome' name="edit"  size={24} />}/>
+            
                   </View>
+                  {/* } */}
                   </Card>
               );
             })
