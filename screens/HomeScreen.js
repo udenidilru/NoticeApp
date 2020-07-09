@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Alert,StyleSheet, ScrollView, ActivityIndicator, View ,Text,Image} from 'react-native';
 import { ListItem } from 'react-native-elements'
 import firestore from '@react-native-firebase/firestore';
-import { Icon ,Card, Button} from 'react-native-elements'
+import { Icon ,Card, Button} from 'react-native-elements';
+import auth from '@react-native-firebase/auth';
 
 
 class HomeScreen extends Component {
@@ -125,6 +126,8 @@ class HomeScreen extends Component {
                   }}/>
                   </View>
                   {/* if(item.author == auth().currentUser.displayName){ */}
+                  {
+                    item.author == auth().currentUser.displayName ?
                   <View style={{flexDirection:'row',marginTop:5, marginLeft:200}}>
                 <Button onPress={() => this.deleteBoard(item.key)} icon={<Icon type='font-awesome' name="trash"  size={24} />} />
                 <Button onPress={() => {
@@ -133,8 +136,9 @@ class HomeScreen extends Component {
               });
             }} icon={ <Icon type='font-awesome' name="edit"  size={24} />}/>
             
-                  </View>
-                  {/* } */}
+            
+                  </View> :<View></View>
+                   } 
                   </Card>
               );
             })
