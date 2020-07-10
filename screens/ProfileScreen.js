@@ -31,10 +31,7 @@ export default class ProfileScreen extends React.Component {
                 source = {require("../assets/profile.jpg")}
                 style = {{ bottom: -200, right: -10}}
             ></Image>
-            {/* <Image 
-                source = {require("../assets/abc.jpg")}
-                style = {{ bottom: -225, right: -25,borderRadius: 50}}
-            ></Image> */}
+            
                 <Text style={styles.email}>Hi {this.state.email}!</Text>
 
                 <TouchableOpacity style={styles.logout} onPress={this.signOutUser}>
@@ -48,7 +45,6 @@ export default class ProfileScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-      //  justifyContent: "center",
         alignItems:"center",
         
     },

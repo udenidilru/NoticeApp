@@ -86,13 +86,15 @@ export default class UpdatePostScreen extends React.Component {
           />
           <TextInput
               placeholder={'Post'}
+              numberOfLines={10}
+              multiline={true}
               value={this.state.post}
               onChangeText={(text) => this.updateTextInput(text, 'post')}
           />
         </View>
         
         <View style={styles.button}>
-          <Button
+          <Button style={{width:10}}
             title='Update Post'
             onPress={() => this.updateBoard()} 
             color="#19AC52"
@@ -123,5 +125,8 @@ const styles = StyleSheet.create({
       bottom: 0,
       alignItems: 'center',
       justifyContent: 'center'
+    },
+    button: {
+      width:10
     }
   })

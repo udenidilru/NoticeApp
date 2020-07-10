@@ -128,12 +128,10 @@ class HomeScreen extends Component {
                   {/* if(item.author == auth().currentUser.displayName){ */}
                   {
                     item.author == auth().currentUser.displayName ?
-                  <View style={{flexDirection:'row',marginTop:5, marginLeft:200}}>
+                <View style={{flexDirection:'row',marginTop:5, marginLeft:200}}>
                 <Button onPress={() => this.deleteBoard(item.key)} icon={<Icon type='font-awesome' name="trash"  size={24} />} />
                 <Button onPress={() => {
-              this.props.navigation.navigate('UpdatePost',{
-                boardkey: item.key
-              });
+                  this.props.navigation.navigate('UpdatePost',{boardkey: item.key});
             }} icon={ <Icon type='font-awesome' name="edit"  size={24} />}/>
             
             

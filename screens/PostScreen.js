@@ -62,26 +62,31 @@ class PostScreen extends Component {
       )
     }
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView >
+      <View style={styles.container}>
         <View style={styles.inputGroup}>
         <TextInput
+        style={{borderWidth: 1,width:250,margin: 15,}}
               placeholder={'Title'}
               value={this.state.title}
               onChangeText={(val) => this.inputValueUpdate(val, 'title')}
           />
           <TextInput
+          style={{borderWidth: 1,width:250,margin: 15,}}
               placeholder={'Post'}
+              numberOfLines={4}
+              multiline={true}
               value={this.state.post}
               onChangeText={(val) => this.inputValueUpdate(val, 'post')}
           />
         </View>
         
-        <View style={styles.button}>
+        <View style={{width:100,alignItems: 'center'}}>
           <Button
             title='Add Post'
             onPress={() => this.storePost()} 
-            color="#19AC52"
-          />
+            color="#19AC52"         />
+        </View>
         </View>
       </ScrollView>
     );
@@ -91,7 +96,8 @@ class PostScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 35
+    padding: 35,
+    alignItems: 'center'
   },
   inputGroup: {
     flex: 1,
@@ -99,6 +105,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     borderBottomWidth: 1,
     borderBottomColor: '#cccccc',
+    
   },
   preloader: {
     left: 0,
