@@ -33,11 +33,11 @@ export default class LoginScreen extends React.Component {
         LayoutAnimation.easeInEaseOut();
         return (
             <View style={styles.container}>
-            <StatusBar barStyle="light-content"></StatusBar>
-            {/* <Image 
-                source = {require("../assets/a.jpg")}
-                style = {{position: "absolute", bottom: -325, right: -225}}
-            ></Image> */}
+            <StatusBar style={{backgroundColor:"#414959"}}></StatusBar>
+            <Image 
+                source = {require("../assets/a3.jpeg")}
+                style = {{position: "absolute",height:'100%',width:'100%', }}
+            ></Image>
                 <Text style={styles.greeting}>{'Hello again.\nWelcome back.'}</Text>
 
                 <View style={styles.errorMessage}>
@@ -83,6 +83,7 @@ export default class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor:"#414959"
     },
     greeting: {
         marginTop: 32,

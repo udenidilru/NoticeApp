@@ -7,6 +7,9 @@ import {
 import { Icon,Button } from 'react-native-elements'
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+import {
+  Image
+} from 'react-native';
 
 export default class UpdatePostScreen extends React.Component {
     constructor() {
@@ -73,34 +76,45 @@ export default class UpdatePostScreen extends React.Component {
       }
     render(){
         return (
+          <View>
+            <Image 
+                source = {require("../assets/a4.jpg")}
+                style = {{position: "absolute",bottom:-300, height:700,width:'100%',}}
+            ></Image>
             <View style={{flexDirection:'row',marginTop:5, marginLeft:10}}>
                 <Button style={{marginLeft:10,width:5}} onPress={() => this.props.navigation.navigate("Home")} icon={<Icon style={{marginLeft:10}} type='font-awesome' name="arrow-circle-left"  size={24} />} />
                 
              
-             <ScrollView style={styles.container}>
+             <ScrollView>
+             
+             <View style={styles.container}>
         <View style={styles.inputGroup}>
         <TextInput
+        style={{borderWidth: 1,width:250,margin: 15,}}
               placeholder={'Title'}
               value={this.state.title}
               onChangeText={(text) => this.updateTextInput(text, 'title')}
           />
           <TextInput
+          style={{borderWidth: 1,width:250,margin: 15,}}
               placeholder={'Post'}
-              numberOfLines={10}
+              numberOfLines={4}
               multiline={true}
               value={this.state.post}
               onChangeText={(text) => this.updateTextInput(text, 'post')}
           />
         </View>
         
-        <View style={styles.button}>
+        <View style={{width:100,alignItems: 'center'}}>
           <Button style={{width:10}}
             title='Update Post'
             onPress={() => this.updateBoard()} 
             color="#19AC52"
           />
         </View>
+        </View>
       </ScrollView>
+      </View>
       </View>
         )
     }
@@ -108,7 +122,8 @@ export default class UpdatePostScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      padding: 20
+      padding: 20,
+      alignItems: 'center'
     },
     subContainer: {
       flex: 1,

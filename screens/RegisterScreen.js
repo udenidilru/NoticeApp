@@ -39,14 +39,14 @@ export default class RegisterScreen extends React.Component {
         return (
             <View style={styles.container}>
             <StatusBar barStyle="light-content"></StatusBar>
-            {/* <Image 
-                source = {require("../assets/a.jpg")}
-                style = {{position: "absolute", bottom: -325, right: -225}}
-            ></Image> */}
+            <Image 
+                source = {require("../assets/a4.jpg")}
+                style = {{position: "absolute", height:'100%',width:'100%',}}
+            ></Image>
             {/* <TouchableOpacity>
                 <Ionicons name="ios-arrow-round-back" size={32} color="#FFF"></Ionicons>    
             </TouchableOpacity> */}
-                <Text style={styles.greeting}>{'Hello.\nSign up to get Started.'}</Text>
+                {/* <Text style={styles.greeting}>{'Hello.\nSign up to get Started.'}</Text> */}
 
                 <View style={styles.errorMessage}>
                     {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}

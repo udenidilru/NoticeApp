@@ -24,12 +24,12 @@ export default class ProfileScreen extends React.Component {
             <View style={styles.container}>
 
             <Image 
-                source = {require("../assets/a.jpg")}
-                style = {{position: "absolute", bottom: -225, right: -225}}
+                source = {require("../assets/a6.jpg")}
+                style = {{position: "absolute", }}
             ></Image>
             <Image 
                 source = {require("../assets/profile.jpg")}
-                style = {{ bottom: -200, right: -10}}
+                style = {{ bottom: -200, right: -10,borderRadius: 150}}
             ></Image>
             
                 <Text style={styles.email}>Hi {this.state.email}!</Text>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, StyleSheet, TextInput, ScrollView, ActivityIndicator, View } from 'react-native';
+import { Button, StyleSheet, TextInput, ScrollView, ActivityIndicator, View,Image } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 
@@ -62,8 +62,14 @@ class PostScreen extends Component {
       )
     }
     return (
-      <ScrollView >
+      <View><Image 
+      source = {require("../assets/a4.jpg")}
+      style = {{position: "absolute",bottom:-270, height:600,width:'100%',}}
+  ></Image>
+      <ScrollView style={styles.scrol}>
+        
       <View style={styles.container}>
+      
         <View style={styles.inputGroup}>
         <TextInput
         style={{borderWidth: 1,width:250,margin: 15,}}
@@ -89,6 +95,7 @@ class PostScreen extends Component {
         </View>
         </View>
       </ScrollView>
+      </View>
     );
   }
 }
@@ -99,12 +106,13 @@ const styles = StyleSheet.create({
     padding: 35,
     alignItems: 'center'
   },
+ 
   inputGroup: {
     flex: 1,
     padding: 0,
-    marginBottom: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#cccccc',
+    //marginBottom: 15,
+    //borderBottomWidth: 1,
+    //borderBottomColor: '#cccccc',
     
   },
   preloader: {

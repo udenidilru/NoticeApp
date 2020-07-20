@@ -93,6 +93,10 @@ class HomeScreen extends Component {
     }    
     return (
       <ScrollView style={styles.container}>
+      <Image 
+                source = {require("../assets/a4.jpg")}
+                style = {{position: "absolute", height:'100%',width:'100%',}}
+            ></Image>
           {
             this.state.userArr.map((item, i) => {
               return (
@@ -128,11 +132,22 @@ class HomeScreen extends Component {
                   {/* if(item.author == auth().currentUser.displayName){ */}
                   {
                     item.author == auth().currentUser.displayName ?
-                <View style={{flexDirection:'row',marginTop:5, marginLeft:200}}>
+                  <View style={{flexDirection:'row',marginTop:5, marginLeft:200}}>
                 <Button onPress={() => this.deleteBoard(item.key)} icon={<Icon type='font-awesome' name="trash"  size={24} />} />
                 <Button onPress={() => {
-                  this.props.navigation.navigate('UpdatePost',{boardkey: item.key});
+              this.props.navigation.navigate('UpdatePost',{
+                boardkey: item.key
+              });
             }} icon={ <Icon type='font-awesome' name="edit"  size={24} />}/>
+            {/* <Button onPress={() => {
+              this.props.navigation.navigate('UpdatePost',{
+                boardkey: item.key
+              });
+            }} icon={{
+              name: "edit",
+              size: 15,
+              color: "white"
+            }}/> */}
             
             
                   </View> :<View></View>
