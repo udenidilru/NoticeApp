@@ -40,7 +40,7 @@ export default class RegisterScreen extends React.Component {
             <View style={styles.container}>
             <StatusBar barStyle="light-content"></StatusBar>
             <Image 
-                source = {require("../assets/a4.jpg")}
+                source = {require("../assets/a3.jpeg")}
                 style = {{position: "absolute", height:'100%',width:'100%',}}
             ></Image>
             {/* <TouchableOpacity>
@@ -62,8 +62,8 @@ export default class RegisterScreen extends React.Component {
                         value={this.state.name}
                         ></TextInput>
                     </View>
-                    <View>
-                        <Text style={{marginTop: 32}}>Email Address</Text>
+                    <View style={{marginTop: 32}}>
+                        <Text style={styles.inputTitle}>Email Address</Text>
                         <TextInput 
                         style={styles.input} 
                         autoCapitalize="none"
@@ -88,8 +88,8 @@ export default class RegisterScreen extends React.Component {
                 <TouchableOpacity
                  style={{ alignSelf: "center", marginTop: 32}}
                  onPress={() => this.props.navigation.navigate("Login")}>
-                    <Text style={{color: "#414959", fontSize: 13}}>
-                        New to SocialApp? <Text style={{ fontWeight: "500",color: "#E9446A"}}>Login</Text>
+                    <Text style={{color: "#FFF5EE", fontSize: 13}}>
+                        New to NoticeApp? <Text style={{ fontWeight: "500",color: "#E9446A"}}>Login here</Text>
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -118,16 +118,17 @@ const styles = StyleSheet.create({
         marginHorizontal: 30
     },
     inputTitle: {
-        //color: "#8A8F9E",
+        color: "#FFF5EE",
         fontSize: 15,
-        textTransform: "uppercase"
+        textTransform: "uppercase",
+        
     },
     input: {
         borderBottomColor: "#8A8F9E",
         borderBottomWidth: StyleSheet.hairlineWidth,
         height: 40,
         fontSize: 15,
-       // color: "#161F3D"
+        color: "#FFF5EE",
     },
     button: {
         marginHorizontal: 30,

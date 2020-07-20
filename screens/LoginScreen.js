@@ -46,7 +46,7 @@ export default class LoginScreen extends React.Component {
 
                 <View style={styles.form}>
                     <View>
-                        <Text style={styles.inputTitle}>Email Address</Text>
+                        <Text style={styles.inputTitle}>Enter Email</Text>
                         <TextInput 
                         style={styles.input} 
                         autoCapitalize="none"
@@ -71,8 +71,8 @@ export default class LoginScreen extends React.Component {
                 <TouchableOpacity
                  style={{ alignSelf: "center", marginTop: 32}}
                  onPress={() => this.props.navigation.navigate("Register")}>
-                    <Text style={{color: "#414959", fontSize: 13}}>
-                        New to SocialApp? <Text style={{ fontWeight: "500",color: "#E9446A"}}>Sign Up</Text>
+                    <Text style={{color: "#FFF5EE", fontSize: 13}}>
+                        New to NoticeApp? <Text style={{ fontWeight: "500",color: "#E9446A"}}>Signup here</Text>
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -89,7 +89,8 @@ const styles = StyleSheet.create({
         marginTop: 32,
         fontSize: 18,
         fontWeight: "400",
-        textAlign: "center"
+        textAlign: "center",
+        color:"#FF00FF"
     },
     errorMessage: {
         height: 72,
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 30
     },
     inputTitle: {
-        // color: "#8A8F9E",
+         color: "#F4A460",
         fontSize: 15,
         textTransform: "uppercase"
     },
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: StyleSheet.hairlineWidth,
         height: 40,
         fontSize: 15,
-        // color: "#161F3D"
+        color: "#FFF5EE"
     },
     button: {
         marginHorizontal: 30,
