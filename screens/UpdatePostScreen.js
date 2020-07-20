@@ -78,7 +78,7 @@ export default class UpdatePostScreen extends React.Component {
         return (
           <View>
             <Image 
-                source = {require("../assets/a4.jpg")}
+                source = {require("../assets/a3.jpeg")}
                 style = {{position: "absolute",bottom:-300, height:700,width:'100%',}}
             ></Image>
             <View style={{flexDirection:'row',marginTop:5, marginLeft:10}}>
@@ -90,15 +90,15 @@ export default class UpdatePostScreen extends React.Component {
              <View style={styles.container}>
         <View style={styles.inputGroup}>
         <TextInput
-        style={{borderWidth: 1,width:250,margin: 15,}}
+        style={{borderWidth: 1,width:250,margin: 15,backgroundColor: '#FFB6C1'}}
               placeholder={'Title'}
               value={this.state.title}
               onChangeText={(text) => this.updateTextInput(text, 'title')}
           />
           <TextInput
-          style={{borderWidth: 1,width:250,margin: 15,}}
+          style={{borderWidth: 1,width:250,margin: 15,backgroundColor: '#FFB6C1'}}
               placeholder={'Post'}
-              numberOfLines={4}
+              numberOfLines={6}
               multiline={true}
               value={this.state.post}
               onChangeText={(text) => this.updateTextInput(text, 'post')}

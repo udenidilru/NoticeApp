@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     email: {
         bottom: 120,
         fontSize: 23,
-        color: "#800080"
+        color: "#BA55D3"
     }
 
 });

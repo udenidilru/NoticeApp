@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, StyleSheet, TextInput, ScrollView, ActivityIndicator, View,Image } from 'react-native';
+import { Button, StyleSheet, TextInput, ScrollView, ActivityIndicator, View,Image,Text } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 
@@ -63,24 +63,25 @@ class PostScreen extends Component {
     }
     return (
       <View><Image 
-      source = {require("../assets/a4.jpg")}
-      style = {{position: "absolute",bottom:-270, height:600,width:'100%',}}
+      source = {require("../assets/a3.jpeg")}
+      style = {{position: "absolute",bottom:-220, height:600,width:'100%',}}
   ></Image>
       <ScrollView style={styles.scrol}>
         
       <View style={styles.container}>
       
         <View style={styles.inputGroup}>
+        <Text style={{fontSize:23,textAlign:'center', color:'#48D1CC'}}>Create a post</Text>
         <TextInput
-        style={{borderWidth: 1,width:250,margin: 15,}}
+        style={{borderWidth: 1,width:250,margin: 15,backgroundColor: '#FFB6C1'}}
               placeholder={'Title'}
               value={this.state.title}
               onChangeText={(val) => this.inputValueUpdate(val, 'title')}
           />
           <TextInput
-          style={{borderWidth: 1,width:250,margin: 15,}}
+          style={{borderWidth: 1,width:250,margin: 15,backgroundColor: '#FFB6C1'}}
               placeholder={'Post'}
-              numberOfLines={4}
+              numberOfLines={6}
               multiline={true}
               value={this.state.post}
               onChangeText={(val) => this.inputValueUpdate(val, 'post')}
@@ -110,6 +111,9 @@ const styles = StyleSheet.create({
   inputGroup: {
     flex: 1,
     padding: 0,
+    color:'#F8F8FF',
+    // backgroundColor: '#FFB6C1',
+   // borderRadius: 20
     //marginBottom: 15,
     //borderBottomWidth: 1,
     //borderBottomColor: '#cccccc',

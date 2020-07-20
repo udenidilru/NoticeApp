@@ -139,15 +139,7 @@ class HomeScreen extends Component {
                 boardkey: item.key
               });
             }} icon={ <Icon type='font-awesome' name="edit"  size={24} />}/>
-            {/* <Button onPress={() => {
-              this.props.navigation.navigate('UpdatePost',{
-                boardkey: item.key
-              });
-            }} icon={{
-              name: "edit",
-              size: 15,
-              color: "white"
-            }}/> */}
+            
             
             
                   </View> :<View></View>
@@ -178,6 +170,7 @@ const styles = StyleSheet.create({
   },
   listitem: {
    // backgroundColor: '#FFB6C1',
+  // color:'#FFB6C1',
      width: 300,
      marginLeft: 10,
      marginTop: 20,
