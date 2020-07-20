@@ -43,6 +43,7 @@ export default class RegisterScreen extends React.Component {
                 source = {require("../assets/a3.jpeg")}
                 style = {{position: "absolute", height:'100%',width:'100%',}}
             ></Image>
+            <Text style={styles.greeting}>{'Hello again.\nWelcome back.'}</Text>
             {/* <TouchableOpacity>
                 <Ionicons name="ios-arrow-round-back" size={32} color="#FFF"></Ionicons>    
             </TouchableOpacity> */}
@@ -105,7 +106,8 @@ const styles = StyleSheet.create({
         marginTop: 32,
         fontSize: 18,
         fontWeight: "400",
-        textAlign: "center"
+        textAlign: "center",
+        color:"#FF00FF"
     },
     errorMessage: {
         height: 72,
