@@ -55,7 +55,7 @@ export default class RegisterScreen extends React.Component {
 
                 <View style={styles.form}>
                 <View>
-                        <Text style={styles.inputTitle}>Full Name</Text>
+                        <Text style={styles.inputTitle}>UserName</Text>
                         <TextInput 
                         style={styles.input} 
                         autoCapitalize="none"
@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 30
     },
     form: {
+        marginTop: -50,
         marginBottom: 48,
         marginHorizontal: 30
     },
