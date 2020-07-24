@@ -8,7 +8,7 @@ class PostScreen extends Component {
     super();
     this.dbRef = firestore().collection('posts');
     this.state = {
-      author: auth().currentUser.displayName,
+      author: '',
       title: '',
       post: '',
       createdAt:'',
@@ -30,7 +30,7 @@ class PostScreen extends Component {
         isLoading: true,
       });      
       this.dbRef.add({
-        author:this.state.author,
+        author:auth().currentUser.displayName,
         title: this.state.title,  
         post: this.state.post,
         createdAt: new Date().getTime(),
